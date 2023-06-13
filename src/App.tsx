@@ -1,11 +1,13 @@
-import "./style/global.scss";
-import { Button } from "antd";
-function App() {
+import { FC } from "react";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+
+const App: FC = () => {
   return (
     <>
-      <Button type="primary">test</Button>
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
-}
+};
 
 export default App;
