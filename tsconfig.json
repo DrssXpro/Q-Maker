@@ -21,5 +21,13 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
+  "plugins": [
+    {
+      "name": "typescript-plugin-css-modules",
+      "options": {
+        "customMatcher": "\\.(c|le||lle|sa|sc)ss$"
+      }
+    }
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
