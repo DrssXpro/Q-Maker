@@ -1,0 +1,15 @@
+.manage-container {
+  width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  .manage-left {
+    width: 150px;
+    height: 100%;
+  }
+  .manage-right {
+    flex: 1;
+    height: 100%;
+  }
+}

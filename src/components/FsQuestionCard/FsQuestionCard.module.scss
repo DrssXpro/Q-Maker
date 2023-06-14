@@ -1,0 +1,24 @@
+.fs-question-card {
+  &-container {
+    width: 100%;
+    height: 110px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+    padding: 10px;
+  }
+  &-title {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+  }
+  &-content {
+    height: 40px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

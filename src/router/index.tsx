@@ -1,8 +1,12 @@
-import { RouteObject, createBrowserRouter } from "react-router-dom";
+import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout/MainLayout";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Register from "../pages/register";
+import ManageLayout from "../layout/ManageLayout/ManageLayout";
+import MyQuestionnaire from "../layout/ManageLayout/components/MyQuestionnaire";
+import CollectQuestionnaire from "../layout/ManageLayout/components/CollectQuestionnaire";
+import RecyleQuestionnaire from "../layout/ManageLayout/components/RecyleQuestionnaire";
 
 const routes: RouteObject[] = [
   {
@@ -11,15 +15,37 @@ const routes: RouteObject[] = [
     children: [
       {
         path: "/",
+        element: <Navigate to={"/home"} />,
+      },
+      {
+        path: "/home",
         element: <Home />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register />,
+      },
+      {
+        path: "manage",
+        element: <ManageLayout />,
+        children: [
+          {
+            path: "my",
+            element: <MyQuestionnaire />,
+          },
+          {
+            path: "collect",
+            element: <CollectQuestionnaire />,
+          },
+          {
+            path: "recyle",
+            element: <RecyleQuestionnaire />,
+          },
+        ],
       },
     ],
   },
