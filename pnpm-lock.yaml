@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ant-design/icons': ^5.1.4
   '@reduxjs/toolkit': ^1.9.5
   '@types/node': ^20.3.1
   '@types/react': ^18.0.37
@@ -24,6 +25,7 @@ specifiers:
   vite: ^4.3.9
 
 dependencies:
+  '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/5.1.4_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': registry.npmmirror.com/@reduxjs/toolkit/1.9.5_f3gfxqpqfo3vym2a7k67mfkzam
   antd: registry.npmmirror.com/antd/5.6.1_biqbaboplfbrettd7655fr4n2y
   axios: registry.npmmirror.com/axios/1.4.0
