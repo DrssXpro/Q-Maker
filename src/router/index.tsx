@@ -7,6 +7,7 @@ import ManageLayout from "../layout/ManageLayout/ManageLayout";
 import MyQuestionnaire from "../layout/ManageLayout/components/MyQuestionnaire";
 import CollectQuestionnaire from "../layout/ManageLayout/components/CollectQuestionnaire";
 import RecyleQuestionnaire from "../layout/ManageLayout/components/RecyleQuestionnaire";
+import NotFound from "../pages/notFound";
 
 const routes: RouteObject[] = [
   {
@@ -34,6 +35,10 @@ const routes: RouteObject[] = [
         element: <ManageLayout />,
         children: [
           {
+            path: "",
+            element: <Navigate to={"/manage/my"} />,
+          },
+          {
             path: "my",
             element: <MyQuestionnaire />,
           },
@@ -46,6 +51,10 @@ const routes: RouteObject[] = [
             element: <RecyleQuestionnaire />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
