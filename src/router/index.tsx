@@ -8,6 +8,7 @@ import MyQuestionnaire from "../layout/ManageLayout/components/MyQuestionnaire";
 import CollectQuestionnaire from "../layout/ManageLayout/components/CollectQuestionnaire";
 import RecyleQuestionnaire from "../layout/ManageLayout/components/RecyleQuestionnaire";
 import NotFound from "../pages/notFound";
+import Edit from "../pages/edit";
 
 const routes: RouteObject[] = [
   {
@@ -52,11 +53,16 @@ const routes: RouteObject[] = [
           },
         ],
       },
+
       {
         path: "*",
         element: <NotFound />,
       },
     ],
+  },
+  {
+    path: "edit/:id",
+    element: <Edit />,
   },
 ];
 
