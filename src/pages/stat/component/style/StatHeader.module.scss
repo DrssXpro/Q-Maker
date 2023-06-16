@@ -1,0 +1,21 @@
+.stat-header-container {
+  height: 60px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .header-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-left,
+  .header-right {
+    width: 300px;
+  }
+  .header-right {
+    text-align: right;
+    margin-right: 5px;
+  }
+}

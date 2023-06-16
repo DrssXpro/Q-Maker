@@ -9,6 +9,7 @@ import CollectQuestionnaire from "../layout/ManageLayout/components/CollectQuest
 import RecyleQuestionnaire from "../layout/ManageLayout/components/RecyleQuestionnaire";
 import NotFound from "../pages/notFound";
 import Edit from "../pages/edit";
+import Stat from "../pages/stat";
 
 const routes: RouteObject[] = [
   {
@@ -63,6 +64,10 @@ const routes: RouteObject[] = [
   {
     path: "edit/:id",
     element: <Edit />,
+  },
+  {
+    path: "stat/:id",
+    element: <Stat />,
   },
 ];
 
