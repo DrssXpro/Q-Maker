@@ -1,14 +1,25 @@
-import { FC } from "react";
-import { UserOutlined } from "@ant-design/icons";
+import { FC, useState } from "react";
+import { LoadingOutlined, UserOutlined } from "@ant-design/icons";
 import styles from "./login.module.scss";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { ILoginPayload } from "../../types/userType";
+import { userLogin } from "../../service/api/userService";
 
 const Login: FC = () => {
   const nagivate = useNavigate();
-  const onFinish = (values: any) => {
-    console.log(values);
-    nagivate("/manage");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleLogin = async (data: ILoginPayload) => {
+    try {
+      setLoading(true);
+      const res = await userLogin(data);
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      // res.code === 1000 && nagivate("/manage");
+      setLoading(false);
+    } catch (error) {
+      message.error("登录失败");
+    }
   };
 
   return (
@@ -23,9 +34,8 @@ const Login: FC = () => {
             name="basic"
             labelCol={{ span: 8 }}
             wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
             initialValues={{ remember: true }}
-            onFinish={onFinish}
+            onFinish={handleLogin}
             autoComplete="off"
           >
             <Form.Item label="用户名" name="username" rules={[{ required: true, message: "请填写用户名" }]}>
@@ -41,7 +51,7 @@ const Login: FC = () => {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" icon={loading ? <LoadingOutlined /> : ""} disabled={loading}>
                 登录
               </Button>
               <Button type="link" onClick={() => nagivate("/register")}>

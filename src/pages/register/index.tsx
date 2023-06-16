@@ -1,14 +1,33 @@
-import { FC } from "react";
-import { UserAddOutlined } from "@ant-design/icons";
+import { FC, useState } from "react";
+import { LoadingOutlined, UserAddOutlined } from "@ant-design/icons";
 import styles from "./register.module.scss";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { userRegister } from "../../service/api/userService";
+import { IRegisterPayload } from "../../types/userType";
 
+interface IFormType extends IRegisterPayload {
+  checkpassword: string;
+}
 const Register: FC = () => {
   const nagivate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: IFormType) => {
     console.log(values);
+    handleUserReigster({ username: values.username, password: values.password });
+  };
+
+  const handleUserReigster = async (data: IRegisterPayload) => {
+    try {
+      setLoading(true);
+      const res = await userRegister(data);
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      setLoading(false);
+      res.code === 1000 && nagivate("/login");
+    } catch (error) {
+      message.error("注册失败");
+    }
   };
 
   return (
@@ -21,9 +40,8 @@ const Register: FC = () => {
           </div>
           <Form
             name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
+            labelCol={{ span: 7 }}
+            wrapperCol={{ span: 19 }}
             initialValues={{ remember: true }}
             onFinish={onFinish}
             autoComplete="off"
@@ -55,8 +73,8 @@ const Register: FC = () => {
               <Input.Password />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
+            <Form.Item wrapperCol={{ offset: 7, span: 24 }}>
+              <Button type="primary" htmlType="submit" icon={loading ? <LoadingOutlined /> : ""} disabled={loading}>
                 登录
               </Button>
               <Button type="link" onClick={() => nagivate("/login")}>

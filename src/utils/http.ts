@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 export interface configRequest {
-  baseUrl: string;
+  baseURL: string;
   timeout: number;
 }
 
