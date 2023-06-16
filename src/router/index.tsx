@@ -1,15 +1,15 @@
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
-import MainLayout from "../layout/MainLayout/MainLayout";
+import MainLayout from "../layout/MainLayout";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Register from "../pages/register";
-import ManageLayout from "../layout/ManageLayout/ManageLayout";
-import MyQuestionnaire from "../layout/ManageLayout/components/MyQuestionnaire";
-import CollectQuestionnaire from "../layout/ManageLayout/components/CollectQuestionnaire";
-import RecyleQuestionnaire from "../layout/ManageLayout/components/RecyleQuestionnaire";
 import NotFound from "../pages/notFound";
 import Edit from "../pages/edit";
 import Stat from "../pages/stat";
+import Manage from "../pages/manage";
+import MyQuestionnaire from "../pages/manage/components/MyQuestionnaire";
+import CollectQuestionnaire from "../pages/manage/components/CollectQuestionnaire";
+import RecyleQuestionnaire from "../pages/manage/components/RecyleQuestionnaire";
 
 const routes: RouteObject[] = [
   {
@@ -34,7 +34,7 @@ const routes: RouteObject[] = [
       },
       {
         path: "manage",
-        element: <ManageLayout />,
+        element: <Manage />,
         children: [
           {
             path: "",

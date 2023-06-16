@@ -1,10 +1,10 @@
 import { FC } from "react";
-import styles from "./style/ManageLayout.module.scss";
+import styles from "./manage.module.scss";
 import { BarsOutlined, StarOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Divider, Space } from "antd";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-const ManageLayout: FC = () => {
+const Manage: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const ManageLayout: FC = () => {
     <>
       <div className={styles["manage-container"]}>
         <div className={styles["manage-left"]}>
-          <Button type="primary" size="large" icon={<PlusOutlined />}>
+          <Button type="primary" size="large" icon={<PlusOutlined />} onClick={() => navigate("/edit/123")}>
             新建问卷
           </Button>
           <Divider style={{ borderTop: "transparent" }} />
@@ -53,4 +53,4 @@ const ManageLayout: FC = () => {
   );
 };
 
-export default ManageLayout;
+export default Manage;

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "./style/home.module.scss";
+import styles from "./home.module.scss";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 const Home: FC = () => {

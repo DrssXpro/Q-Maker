@@ -3,7 +3,13 @@ import styles from "./FsQuestionCard.module.scss";
 import { StarOutlined, EditOutlined, LineChartOutlined, CopyOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Button, Popconfirm, Space, Tag } from "antd";
-const FsQuestionCard: FC = () => {
+
+interface propsType {
+  goEditPage: () => void;
+  goStatPage: () => void;
+}
+const FsQuestionCard: FC<propsType> = (props: propsType) => {
+  const { goEditPage, goStatPage } = props;
   const changeStar = () => {};
 
   const confirmCopy = () => {};
@@ -26,10 +32,10 @@ const FsQuestionCard: FC = () => {
       </div>
       <div className={styles["fs-question-card-content"]}>
         <Space>
-          <Button type="text" icon={<EditOutlined />}>
+          <Button type="text" icon={<EditOutlined />} onClick={goEditPage}>
             编辑问卷
           </Button>
-          <Button type="text" icon={<LineChartOutlined />}>
+          <Button type="text" icon={<LineChartOutlined />} onClick={goStatPage}>
             数据统计
           </Button>
         </Space>

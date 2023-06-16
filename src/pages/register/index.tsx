@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { UserAddOutlined } from "@ant-design/icons";
-import styles from "./style/register.module.scss";
+import styles from "./register.module.scss";
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 

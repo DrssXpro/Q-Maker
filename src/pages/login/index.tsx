@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { UserOutlined } from "@ant-design/icons";
-import styles from "./style/login.module.scss";
+import styles from "./login.module.scss";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,7 @@ const Login: FC = () => {
   const nagivate = useNavigate();
   const onFinish = (values: any) => {
     console.log(values);
+    nagivate("/manage");
   };
 
   return (
