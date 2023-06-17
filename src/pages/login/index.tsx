@@ -1,21 +1,23 @@
 import { FC, useState } from "react";
 import { LoadingOutlined, UserOutlined } from "@ant-design/icons";
 import styles from "./login.module.scss";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ILoginPayload } from "../../types/userType";
 import { userLogin } from "../../service/api/userService";
-
+import useUserInfo from "../../hooks/useUserInfo";
 const Login: FC = () => {
   const nagivate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
+  const { saveUserInfo } = useUserInfo();
 
   const handleLogin = async (data: ILoginPayload) => {
     try {
       setLoading(true);
       const res = await userLogin(data);
       res.code === 1000 ? message.success(res.message) : message.warning(res.message);
-      // res.code === 1000 && nagivate("/manage");
+      res.code === 1000 && nagivate("/manage");
+      res.code === 1000 && saveUserInfo(res.data);
       setLoading(false);
     } catch (error) {
       message.error("登录失败");
@@ -44,10 +46,6 @@ const Login: FC = () => {
 
             <Form.Item label="密码" name="password" rules={[{ required: true, message: "请输入密码" }]}>
               <Input.Password />
-            </Form.Item>
-
-            <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-              <Checkbox>记住我</Checkbox>
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

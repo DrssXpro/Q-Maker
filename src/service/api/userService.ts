@@ -1,6 +1,6 @@
 import { myRequest } from "..";
 import { IResponseData } from "../../types/responseType";
-import { ILoginPayload, IRegisterPayload } from "../../types/userType";
+import { ILoginPayload, IRegisterPayload, IUserInfo } from "../../types/userType";
 
 // 用户注册
 function userRegister(payload: IRegisterPayload) {
@@ -12,7 +12,7 @@ function userRegister(payload: IRegisterPayload) {
 
 // 用户登录
 function userLogin(payload: ILoginPayload) {
-  return myRequest.post<IResponseData>({
+  return myRequest.post<IResponseData<IUserInfo>>({
     url: "/user/login",
     data: payload,
   });
