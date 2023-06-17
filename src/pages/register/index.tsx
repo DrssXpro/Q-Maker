@@ -3,7 +3,7 @@ import { LoadingOutlined, UserAddOutlined } from "@ant-design/icons";
 import styles from "./register.module.scss";
 import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { userRegister } from "../../service/api/userService";
+import { userRegisterApi } from "../../service/api/userService";
 import { IRegisterPayload } from "../../types/userType";
 
 interface IFormType extends IRegisterPayload {
@@ -21,7 +21,7 @@ const Register: FC = () => {
   const handleUserReigster = async (data: IRegisterPayload) => {
     try {
       setLoading(true);
-      const res = await userRegister(data);
+      const res = await userRegisterApi(data);
       res.code === 1000 ? message.success(res.message) : message.warning(res.message);
       setLoading(false);
       res.code === 1000 && nagivate("/login");

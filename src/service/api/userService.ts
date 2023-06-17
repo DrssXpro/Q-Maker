@@ -3,7 +3,7 @@ import { IResponseData } from "../../types/responseType";
 import { ILoginPayload, IRegisterPayload, IUserInfo } from "../../types/userType";
 
 // 用户注册
-function userRegister(payload: IRegisterPayload) {
+function userRegisterApi(payload: IRegisterPayload) {
   return myRequest.post<IResponseData>({
     url: "/user/register",
     data: payload,
@@ -11,11 +11,11 @@ function userRegister(payload: IRegisterPayload) {
 }
 
 // 用户登录
-function userLogin(payload: ILoginPayload) {
+function userLoginApi(payload: ILoginPayload) {
   return myRequest.post<IResponseData<IUserInfo>>({
     url: "/user/login",
     data: payload,
   });
 }
 
-export { userRegister, userLogin };
+export { userRegisterApi, userLoginApi };

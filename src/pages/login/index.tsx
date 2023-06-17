@@ -4,7 +4,7 @@ import styles from "./login.module.scss";
 import { Button, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ILoginPayload } from "../../types/userType";
-import { userLogin } from "../../service/api/userService";
+import { userLoginApi } from "../../service/api/userService";
 import useUserInfo from "../../hooks/useUserInfo";
 const Login: FC = () => {
   const nagivate = useNavigate();
@@ -14,7 +14,7 @@ const Login: FC = () => {
   const handleLogin = async (data: ILoginPayload) => {
     try {
       setLoading(true);
-      const res = await userLogin(data);
+      const res = await userLoginApi(data);
       res.code === 1000 ? message.success(res.message) : message.warning(res.message);
       res.code === 1000 && nagivate("/manage");
       res.code === 1000 && saveUserInfo(res.data);
