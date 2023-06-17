@@ -3,3 +3,8 @@ export interface IResponseData<T = any> {
   message: string;
   data: T;
 }
+
+export interface IList<T> {
+  count: number;
+  rows: T[];
+}
