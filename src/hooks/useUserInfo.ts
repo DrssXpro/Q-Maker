@@ -14,11 +14,13 @@ export default function useUserInfo() {
 
   const saveUserInfo = (user: IUserInfo) => {
     localStorage.setItem("userInfo", JSON.stringify(user));
+    localStorage.setItem("token", user.token);
     dispatch(setUserInfoAction({ username: user.username, id: user.id }));
   };
 
   const handleLoginOut = () => {
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
     dispatch(logOutAction());
     message.success("退出成功");
     nav("/home");

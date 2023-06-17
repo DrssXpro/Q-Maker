@@ -1,4 +1,6 @@
+import { message } from "antd";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import useUserInfo from "../hooks/useUserInfo";
 
 export interface configRequest {
   baseURL: string;
@@ -14,11 +16,21 @@ class FsRequest {
 
     // 配置请求拦截器
     this.instance.interceptors.request.use((config) => {
+      // 配置请求头token
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers!.Authorization = `Bearer ${token}`;
+      }
       return config;
     });
 
     // 配置响应拦截器
     this.instance.interceptors.response.use((config) => {
+      if (config.data.code === 1100) {
+        message.warning(config.data.message);
+        const { handleLoginOut } = useUserInfo();
+        handleLoginOut();
+      }
       return config.data;
     });
   }
