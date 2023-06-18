@@ -15,10 +15,10 @@ export interface IQueryPayload {
 export interface IQuestionInfo {
   id: string;
   title: string;
-  struct: string;
   peopleCount: number;
   isdelete: 0 | 1;
   ispublish: 0 | 1;
+  isstar: 0 | 1;
   createdAt: string;
   updatedAt: string;
   user: {

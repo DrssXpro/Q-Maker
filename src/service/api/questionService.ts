@@ -18,4 +18,12 @@ function getQuestionListApi(payload: IQueryPayload) {
   });
 }
 
-export { createQuestionApi, getQuestionListApi };
+// 获取星标问卷列表
+function getStarQuestionListApi(payload: IQueryPayload) {
+  return myRequest.get<IResponseData<IList<IQuestionInfo>>>({
+    url: "/question/star",
+    params: payload,
+  });
+}
+
+export { createQuestionApi, getQuestionListApi, getStarQuestionListApi };
