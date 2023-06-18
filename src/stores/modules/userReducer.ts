@@ -3,10 +3,24 @@ import { IUserInfo } from "../../types/userType";
 
 export type UserStateType = Pick<IUserInfo, "id" | "username">;
 
-const initState: UserStateType = {
-  id: "",
-  username: "",
-};
+// 获取本地用户信息读取至 store 中
+function getLocalInfo() {
+  const userString = localStorage.getItem("userInfo");
+  const userInfo = {
+    id: "",
+    username: "",
+  };
+  if (userString) {
+    const item = JSON.parse(userString) as IUserInfo;
+    userInfo.id = item.id;
+    userInfo.username = item.username;
+  }
+
+  return userInfo;
+}
+
+const initState: UserStateType = getLocalInfo();
+
 const userSlice = createSlice({
   name: "user",
   initialState: initState,
