@@ -3,7 +3,7 @@ import styles from "./style/questionnaire.module.scss";
 import { Button, Input, Space, message } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { IQuestionInfo } from "../../../types/questionType";
-import { deleteQuestionBApi, getStarQuestionListApi, recoverQuestionApi } from "../../../service/api/questionService";
+import { deleteQuestionBApi, getQuestionListApi, recoverQuestionApi } from "../../../service/api/questionService";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const { Search } = Input;
@@ -41,7 +41,7 @@ const RecyleQuestionnaire: FC = () => {
 
   useEffect(() => {
     getQuestList();
-  }, [pathname]);
+  }, [searchParams]);
 
   const handleSearchList = (value: string) => {
     console.log(value);
@@ -55,7 +55,7 @@ const RecyleQuestionnaire: FC = () => {
       const pageSize = parseInt(searchParams.get("pageSize") || "") || 2;
       setPage(page);
       setPageSize(pageSize);
-      const res = await getStarQuestionListApi({ page: 1, pageSize: 2 });
+      const res = await getQuestionListApi({ page, pageSize, isdelete: 1 });
       setList(res.data.rows);
       setTotal(res.data.count);
     } catch (error) {
@@ -92,6 +92,7 @@ const RecyleQuestionnaire: FC = () => {
     setLoading(false);
   };
 
+  // 点击分页逻辑处理
   const handlePageChage = (page: number) => {
     setPage(page);
     searchParams.set("page", page.toString());
