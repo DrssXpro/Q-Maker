@@ -1,4 +1,4 @@
-import { IComponentConfig } from "../..";
+import { IComponentConfig } from "../../type";
 import TitleComponent from "./components/TitleComponent";
 import TitlePropsComponent from "./components/TitlePropsComponent";
 import { IQuestionTitleProps } from "./type";

@@ -1,4 +1,4 @@
-import { IComponentConfig } from "../..";
+import { IComponentConfig } from "../../type";
 import InputComponent from "./components/InputComponent";
 import InputPropsComponent from "./components/InputPropsComponent";
 import { IQuestionInputProps } from "./type";

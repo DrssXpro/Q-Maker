@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Typography } from "antd";
 import styles from "./FsEditComponents.module.scss";
-import { componentGonfigGroup } from "../../FsQuestionComponents/type";
-import { IComponentConfig } from "../../FsQuestionComponents";
+import { componentGonfigGroup } from "../../FsQuestionComponents";
+import { IComponentConfig } from "../../FsQuestionComponents/type";
 
 const { Title } = Typography;
 
