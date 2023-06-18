@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { IQuestionTitleProps } from "../type";
 import { Form, Input, Radio, Select } from "antd";
-import { useForm } from "antd/es/form/Form";
 
 const TitlePropsComponent: FC = (props: IQuestionTitleProps) => {
   const { text, level, direction, onChange, disabled } = props;
-  const [form] = useForm();
+  const [form] = Form.useForm();
 
   const handleValueChange = () => {
     onChange && onChange(form.getFieldsValue());

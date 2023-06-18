@@ -1,4 +1,5 @@
 import { IComponentConfig } from ".";
+import { QuestionInputConfig } from "./QuestionComponents/QuestionInput";
 import { QuestionTitleConfig } from "./QuestionComponents/QuestionTitle";
 
 // 所有组件配置列表
@@ -14,7 +15,7 @@ export const componentGonfigGroup = [
   {
     groupId: "inputGroup",
     groupName: "用户输入",
-    components: [],
+    components: [QuestionInputConfig],
   },
   {
     groupId: "chooseGroup",
