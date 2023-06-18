@@ -1,5 +1,5 @@
 import { myRequest } from "..";
-import { IQueryPayload, IQuestionInfo, IQuestionPayload } from "../../types/questionType";
+import { IQueryPayload, IQuestionInfo, IQuestionPayload, IStarPayload } from "../../types/questionType";
 import { IList, IResponseData } from "../../types/responseType";
 
 // 创建问卷
@@ -23,6 +23,14 @@ function getStarQuestionListApi(payload: IQueryPayload) {
   return myRequest.get<IResponseData<IList<IQuestionInfo>>>({
     url: "/question/star",
     params: payload,
+  });
+}
+
+// 标星 / 取消标星问卷
+function starQuestionApi(payload: IStarPayload) {
+  return myRequest.post<IResponseData>({
+    url: "/question/star",
+    data: payload,
   });
 }
 
@@ -53,6 +61,7 @@ export {
   createQuestionApi,
   getQuestionListApi,
   getStarQuestionListApi,
+  starQuestionApi,
   deleteQuestionAApi,
   deleteQuestionBApi,
   recoverQuestionApi,

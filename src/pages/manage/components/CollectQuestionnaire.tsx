@@ -3,7 +3,7 @@ import styles from "./style/questionnaire.module.scss";
 import { Input, Pagination, Spin, message } from "antd";
 import FsQuestionCard from "../../../components/FsQuestionCard/FsQuestionCard";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { getStarQuestionListApi } from "../../../service/api/questionService";
+import { deleteQuestionAApi, getStarQuestionListApi, starQuestionApi } from "../../../service/api/questionService";
 import { IQuestionInfo } from "../../../types/questionType";
 import FsEmpty from "../../../components/FsEmpty/FsEmpty";
 
@@ -29,6 +29,30 @@ const CollectQuestionnaire: FC = () => {
 
   const goStatPage = () => {
     nav("/stat/123");
+  };
+
+  const handleReomveQuestion = async (id: string) => {
+    try {
+      setLoading(true);
+      const res = await deleteQuestionAApi(id);
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      res.code === 1000 && getQuestionList();
+    } catch (error) {
+      message.error("删除失败");
+    }
+    setLoading(false);
+  };
+
+  const handleStarQuestion = async (id: string, iscollect: 0 | 1) => {
+    try {
+      setLoading(true);
+      const res = await starQuestionApi({ targetId: id, iscollect: iscollect === 1 ? 0 : 1 });
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      res.code === 1000 && getQuestionList();
+    } catch (error) {
+      message.error("操作失败");
+    }
+    setLoading(false);
   };
 
   const handleSearchList = (value: string) => {
@@ -73,7 +97,14 @@ const CollectQuestionnaire: FC = () => {
       {list.length ? (
         <div className={styles["questionnaire-list"]}>
           {list.map((i) => (
-            <FsQuestionCard goEditPage={goEditPage} goStatPage={goStatPage} key={i.id}></FsQuestionCard>
+            <FsQuestionCard
+              goEditPage={goEditPage}
+              goStatPage={goStatPage}
+              starQuestion={handleStarQuestion}
+              removeQuestion={handleReomveQuestion}
+              questionDetail={i}
+              key={i.id}
+            ></FsQuestionCard>
           ))}
           <div style={{ width: "100%", textAlign: "right" }}>
             <Pagination current={page} pageSize={pageSize} total={total} onChange={handlePageChange} />

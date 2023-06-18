@@ -3,7 +3,7 @@ import styles from "./style/questionnaire.module.scss";
 import { Button, Input, Spin, message } from "antd";
 import FsQuestionCard from "../../../components/FsQuestionCard/FsQuestionCard";
 import { useNavigate } from "react-router-dom";
-import { getQuestionListApi } from "../../../service/api/questionService";
+import { deleteQuestionAApi, getQuestionListApi, starQuestionApi } from "../../../service/api/questionService";
 import { IQuestionInfo } from "../../../types/questionType";
 import FsEmpty from "../../../components/FsEmpty/FsEmpty";
 
@@ -33,11 +33,42 @@ const MyQuestionnaire: FC = () => {
     console.log(value);
   };
 
+  // 处理移除问卷：页面数据 + 后台数据 移除
+  const handleReomveQuestion = async (id: string) => {
+    try {
+      setLoading(true);
+      const res = await deleteQuestionAApi(id);
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      res.code === 1000 && setList(list.filter((i) => i.id !== id));
+    } catch (error) {
+      message.error("移除失败");
+    }
+    setLoading(false);
+  };
+  // 处理标星问卷：页面数据 + 后台数据 更改
+  const handleStarQuestion = async (id: string, iscollect: 0 | 1) => {
+    try {
+      setLoading(true);
+      const res = await starQuestionApi({ targetId: id, iscollect: iscollect === 1 ? 0 : 1 });
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      res.code === 1000 &&
+        setList(
+          list.map((i) => {
+            if (i.id === id) i.isstar = i.isstar === 1 ? 0 : 1;
+            return i;
+          })
+        );
+    } catch (error) {
+      message.error("操作失败");
+    }
+    setLoading(false);
+  };
+
   const getQuestionList = async () => {
     try {
       if (isMore) {
         setLoading(true);
-        const res = await getQuestionListApi({ page, pageSize });
+        const res = await getQuestionListApi({ page, pageSize, isdelete: 0 });
         if (!res.data.rows.length) setIsMore(false);
         setList([...list, ...res.data.rows]);
         setLoading(false);
@@ -60,7 +91,14 @@ const MyQuestionnaire: FC = () => {
       {list.length ? (
         <div className={styles["questionnaire-list"]}>
           {list.map((i) => (
-            <FsQuestionCard goEditPage={goEditPage} goStatPage={goStatPage} key={i.id}></FsQuestionCard>
+            <FsQuestionCard
+              goEditPage={goEditPage}
+              goStatPage={goStatPage}
+              removeQuestion={handleReomveQuestion}
+              starQuestion={handleStarQuestion}
+              questionDetail={i}
+              key={i.id}
+            ></FsQuestionCard>
           ))}
           {!isMore ? (
             <span>没有更多问卷了...</span>

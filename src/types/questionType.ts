@@ -12,6 +12,11 @@ export interface IQueryPayload {
   isdelete?: 0 | 1;
 }
 
+export interface IStarPayload {
+  targetId: string;
+  iscollect: 0 | 1;
+}
+
 export interface IQuestionInfo {
   id: string;
   title: string;
