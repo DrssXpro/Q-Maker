@@ -26,4 +26,34 @@ function getStarQuestionListApi(payload: IQueryPayload) {
   });
 }
 
-export { createQuestionApi, getQuestionListApi, getStarQuestionListApi };
+// 逻辑删除问卷
+function deleteQuestionAApi(id: string) {
+  return myRequest.post<IResponseData>({
+    url: `/question/remove/${id}`,
+  });
+}
+
+// 物理删除问卷
+function deleteQuestionBApi(ids: string[]) {
+  return myRequest.post<IResponseData>({
+    url: "/question/delete",
+    data: { ids },
+  });
+}
+
+// 恢复问卷
+function recoverQuestionApi(ids: string[]) {
+  return myRequest.post<IResponseData>({
+    url: "/question/recover",
+    data: { ids },
+  });
+}
+
+export {
+  createQuestionApi,
+  getQuestionListApi,
+  getStarQuestionListApi,
+  deleteQuestionAApi,
+  deleteQuestionBApi,
+  recoverQuestionApi,
+};

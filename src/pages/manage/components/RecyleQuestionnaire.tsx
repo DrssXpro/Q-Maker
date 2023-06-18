@@ -3,7 +3,7 @@ import styles from "./style/questionnaire.module.scss";
 import { Button, Input, Space, message } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { IQuestionInfo } from "../../../types/questionType";
-import { getStarQuestionListApi } from "../../../service/api/questionService";
+import { deleteQuestionBApi, getStarQuestionListApi, recoverQuestionApi } from "../../../service/api/questionService";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const { Search } = Input;
@@ -47,6 +47,7 @@ const RecyleQuestionnaire: FC = () => {
     console.log(value);
   };
 
+  // 获取问卷列表
   const getQuestList = async () => {
     try {
       setLoading(true);
@@ -63,12 +64,32 @@ const RecyleQuestionnaire: FC = () => {
     setLoading(false);
   };
 
-  const handleRecoverQuestion = () => {};
-  const handleDeleteQuestion = () => {};
+  // 恢复问卷
+  const handleRecoverQuestion = async () => {
+    try {
+      setLoading(true);
+      const res = await recoverQuestionApi(selectedRowKeys as string[]);
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      res.code === 1000 && getQuestList();
+      res.code === 1000 && setSelectedRowKeys([]);
+    } catch (error) {
+      message.error("恢复失败");
+    }
+    setLoading(false);
+  };
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    console.log("selectedRowKeys changed: ", newSelectedRowKeys);
-    setSelectedRowKeys(newSelectedRowKeys);
+  // 彻底删除问卷
+  const handleDeleteQuestion = async () => {
+    try {
+      setLoading(true);
+      const res = await deleteQuestionBApi(selectedRowKeys as string[]);
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      res.code === 1000 && getQuestList();
+      res.code === 1000 && setSelectedRowKeys([]);
+    } catch (error) {
+      message.error("删除失败");
+    }
+    setLoading(false);
   };
 
   const handlePageChage = (page: number) => {
@@ -81,15 +102,11 @@ const RecyleQuestionnaire: FC = () => {
     });
   };
 
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
   const hasSelected = selectedRowKeys.length > 0;
   return (
     <>
       <div className={styles["search-header"]}>
-        <span style={{ fontSize: "22px", fontWeight: "500", letterSpacing: "0.1rem" }}>问卷列表</span>
+        <span style={{ fontSize: "22px", fontWeight: "500", letterSpacing: "0.1rem" }}>回收站</span>
         <Search placeholder="请输入标题..." allowClear onSearch={handleSearchList} style={{ width: 250 }} />
       </div>
 
@@ -104,7 +121,10 @@ const RecyleQuestionnaire: FC = () => {
         </Space>
       </div>
       <Table
-        rowSelection={rowSelection}
+        rowSelection={{
+          selectedRowKeys,
+          onChange: (newSelectedRowKeys) => setSelectedRowKeys(newSelectedRowKeys),
+        }}
         rowKey="id"
         columns={columns}
         dataSource={list}
