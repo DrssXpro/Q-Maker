@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./style/questionnaire.module.scss";
-import { Button, Input, Spin } from "antd";
+import { Button, Input, Spin, message } from "antd";
 import FsQuestionCard from "../../../components/FsQuestionCard/FsQuestionCard";
 import { useNavigate } from "react-router-dom";
 import { getQuestionListApi } from "../../../service/api/questionService";
@@ -34,12 +34,16 @@ const MyQuestionnaire: FC = () => {
   };
 
   const getQuestionList = async () => {
-    if (isMore) {
-      setLoading(true);
-      const res = await getQuestionListApi({ page, pageSize });
-      if (!res.data.rows.length) setIsMore(false);
-      setList([...list, ...res.data.rows]);
-      setLoading(false);
+    try {
+      if (isMore) {
+        setLoading(true);
+        const res = await getQuestionListApi({ page, pageSize });
+        if (!res.data.rows.length) setIsMore(false);
+        setList([...list, ...res.data.rows]);
+        setLoading(false);
+      }
+    } catch (error) {
+      message.error("获取数据列表失败");
     }
   };
 
