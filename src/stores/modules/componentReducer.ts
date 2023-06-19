@@ -1,4 +1,3 @@
-import { produce } from "immer";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ComponentPropsType } from "../../components/FsQuestionComponents/type";
 import { insertNewComponent } from "../../utils/componentTool";
@@ -35,13 +34,13 @@ const componentSlice = createSlice({
       return action.payload;
     },
     // 修改 CurrentSelect
-    changeCurrentSelectAction: produce((draft: ComponentStateType, action: PayloadAction<string>) => {
-      draft.currentSelect = action.payload;
-    }),
+    changeCurrentSelectAction: (state: ComponentStateType, action: PayloadAction<string>) => {
+      state.currentSelect = action.payload;
+    },
     // 添加新组件
-    addComponentAction: (draft: ComponentStateType, action: PayloadAction<ComponentInfoType>) => {
+    addComponentAction: (state: ComponentStateType, action: PayloadAction<ComponentInfoType>) => {
       const newComponent = action.payload;
-      insertNewComponent(draft, newComponent);
+      insertNewComponent(state, newComponent);
     },
   },
 });

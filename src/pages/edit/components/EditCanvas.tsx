@@ -2,8 +2,9 @@ import { FC } from "react";
 import styles from "./style/EditCanvas.module.scss";
 import classNames from "classnames";
 import useStoreComponent from "../../../hooks/useStoreComponent";
-import { ComponentInfoType } from "../../../stores/modules/componentReducer";
+import { ComponentInfoType, changeCurrentSelectAction } from "../../../stores/modules/componentReducer";
 import { getComponentConfigByType } from "../../../components/FsQuestionComponents";
+import { useDispatch } from "react-redux";
 
 // 通过store中的info，获取对应的component config，拿到 Component
 const generatorComponent = (componentInfo: ComponentInfoType) => {
@@ -16,6 +17,11 @@ const generatorComponent = (componentInfo: ComponentInfoType) => {
 
 const EditCanvas: FC = () => {
   const { currentSelect, componentList } = useStoreComponent();
+  const dispatch = useDispatch();
+
+  const handleSeletComponent = (id: string) => {
+    dispatch(changeCurrentSelectAction(id));
+  };
 
   return (
     <div className={styles["edit-canvas"]}>
@@ -30,7 +36,7 @@ const EditCanvas: FC = () => {
           });
 
           return (
-            <div className={componentClassName} key={id}>
+            <div className={componentClassName} key={id} onClick={() => handleSeletComponent(id)}>
               <div style={{ pointerEvents: "none" }}>{generatorComponent(c)}</div>
             </div>
           );
