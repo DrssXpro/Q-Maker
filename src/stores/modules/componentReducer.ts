@@ -37,6 +37,14 @@ const componentSlice = createSlice({
     changeCurrentSelectAction: (state: ComponentStateType, action: PayloadAction<string>) => {
       state.currentSelect = action.payload;
     },
+
+    // 修改指定的组件 title
+    changeComponentTitleAction: (state: ComponentStateType, action: PayloadAction<{ id: string; title: string }>) => {
+      const { id, title } = action.payload;
+      state.componentList.forEach((i) => {
+        if (i.id === id) i.title = title;
+      });
+    },
     // 添加新组件
     addComponentAction: (state: ComponentStateType, action: PayloadAction<ComponentInfoType>) => {
       const newComponent = action.payload;
@@ -110,6 +118,7 @@ const componentSlice = createSlice({
 export const {
   resetComponentsAction,
   changeCurrentSelectAction,
+  changeComponentTitleAction,
   addComponentAction,
   reomveComponentAction,
   controllComponentHiddenAction,
