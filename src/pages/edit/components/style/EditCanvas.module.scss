@@ -3,4 +3,26 @@
   height: 85%;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  .component-wrapper {
+    margin: 12px;
+    border: 1px solid #fff;
+    padding: 12px;
+    border-radius: 3px;
+
+    &:hover {
+      border-color: #d9d9d9;
+    }
+  }
+  &:hover {
+    border-color: #d9d9d9;
+  }
+  .selected {
+    border-color: #1890ff !important;
+  }
+
+  .locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

@@ -11,6 +11,7 @@ specifiers:
   '@vitejs/plugin-react': ^4.0.0
   antd: ^5.6.1
   axios: ^1.4.0
+  classnames: ^2.3.2
   eslint: ^8.38.0
   eslint-plugin-react-hooks: ^4.6.0
   eslint-plugin-react-refresh: ^0.3.4
@@ -30,6 +31,7 @@ dependencies:
   '@reduxjs/toolkit': registry.npmmirror.com/@reduxjs/toolkit/1.9.5_f3gfxqpqfo3vym2a7k67mfkzam
   antd: registry.npmmirror.com/antd/5.6.1_biqbaboplfbrettd7655fr4n2y
   axios: registry.npmmirror.com/axios/1.4.0
+  classnames: registry.npmmirror.com/classnames/2.3.2
   immer: registry.npmmirror.com/immer/10.0.2
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0

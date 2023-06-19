@@ -3,7 +3,7 @@ import { QuestionTitleConfig } from "./QuestionComponents/QuestionTitle";
 import { IComponentConfig } from "./type";
 
 // 所有组件配置列表
-const componentConfigList: IComponentConfig[] = [QuestionTitleConfig];
+const componentConfigList: IComponentConfig[] = [QuestionTitleConfig, QuestionInputConfig];
 
 // 所有组件按照类型分组
 export const componentGonfigGroup = [
