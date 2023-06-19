@@ -12,3 +12,15 @@ img {
   height: 100%;
   object-fit: cover;
 }
+
+// 设置滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 15px;
+}
