@@ -45,6 +45,20 @@ const componentSlice = createSlice({
         if (i.id === id) i.title = title;
       });
     },
+
+    // 修改指定组件的 props
+    changeComponentPropsAction: (
+      state: ComponentStateType,
+      action: PayloadAction<{ id: string; newProps: ComponentPropsType }>
+    ) => {
+      const { id, newProps } = action.payload;
+      state.componentList.forEach((c) => {
+        if (c.id === id) {
+          c.props = { ...c.props, ...newProps };
+        }
+      });
+    },
+
     // 添加新组件
     addComponentAction: (state: ComponentStateType, action: PayloadAction<ComponentInfoType>) => {
       const newComponent = action.payload;
@@ -119,6 +133,7 @@ export const {
   resetComponentsAction,
   changeCurrentSelectAction,
   changeComponentTitleAction,
+  changeComponentPropsAction,
   addComponentAction,
   reomveComponentAction,
   controllComponentHiddenAction,
