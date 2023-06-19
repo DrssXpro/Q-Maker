@@ -11,6 +11,7 @@ const { Title } = Typography;
 
 const generateComponent = (c: IComponentConfig) => {
   const { type, title, Component, defaultProps } = c;
+  console.log("check:", defaultProps);
   const dispatch = useDispatch();
 
   //将新组件添加至 store
@@ -32,6 +33,7 @@ const generateComponent = (c: IComponentConfig) => {
     </div>
   );
 };
+
 const FsEditComponents: FC = () => {
   return (
     <>

@@ -1,16 +1,17 @@
 import { QuestionInputConfig } from "./QuestionComponents/QuestionInput";
 import { QuestionTitleConfig } from "./QuestionComponents/QuestionTitle";
+import { QuestionInfoConfig } from "./QuestionComponents/QuestionInfo";
 import { IComponentConfig } from "./type";
 
 // 所有组件配置列表
-const componentConfigList: IComponentConfig[] = [QuestionTitleConfig, QuestionInputConfig];
+const componentConfigList: IComponentConfig[] = [QuestionTitleConfig, QuestionInputConfig, QuestionInfoConfig];
 
 // 所有组件按照类型分组
 export const componentGonfigGroup = [
   {
     groupId: "textGroup",
     groupName: "文本显示",
-    components: [QuestionTitleConfig],
+    components: [QuestionInfoConfig, QuestionTitleConfig],
   },
   {
     groupId: "inputGroup",
