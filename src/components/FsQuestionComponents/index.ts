@@ -3,6 +3,7 @@ import { QuestionTitleConfig } from "./QuestionComponents/QuestionTitle";
 import { QuestionInfoConfig } from "./QuestionComponents/QuestionInfo";
 import { IComponentConfig } from "./type";
 import { QuestionParagraphConfig } from "./QuestionComponents/QuestionParagraph";
+import { QuestionTextareaConfig } from "./QuestionComponents/QuestionTextarea";
 
 // 所有组件配置列表
 const componentConfigList: IComponentConfig[] = [
@@ -10,6 +11,7 @@ const componentConfigList: IComponentConfig[] = [
   QuestionInputConfig,
   QuestionInfoConfig,
   QuestionParagraphConfig,
+  QuestionTextareaConfig,
 ];
 
 // 所有组件按照类型分组
@@ -22,7 +24,7 @@ export const componentGonfigGroup = [
   {
     groupId: "inputGroup",
     groupName: "用户输入",
-    components: [QuestionInputConfig],
+    components: [QuestionInputConfig, QuestionTextareaConfig],
   },
   {
     groupId: "chooseGroup",
