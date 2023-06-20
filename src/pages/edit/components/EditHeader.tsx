@@ -1,13 +1,17 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import styles from "./style/EditHeader.module.scss";
 import { Button, Input, Space, message } from "antd";
 import { CheckOutlined, EditOutlined, LeftOutlined } from "@ant-design/icons";
 import FsToolBar from "../../../components/FsToolBar/FsToolBar";
 import { useNavigate } from "react-router-dom";
+import useStorePageInfo from "../../../hooks/useStorePageInfo";
+import { useDispatch } from "react-redux";
+import { changePageTitleAction } from "../../../stores/modules/pageInfoReducer";
 
 const QTitle: FC = () => {
+  const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>("新建问卷 03-09 11:44");
+  const pageInfo = useStorePageInfo();
 
   const setEditState = () => {
     if (isEdit) {
@@ -16,13 +20,19 @@ const QTitle: FC = () => {
     setIsEdit(!isEdit);
   };
 
+  const handleChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    const title = e.target.value.trim();
+    if (!title) return;
+    dispatch(changePageTitleAction(title));
+  };
+
   return (
     <>
       <Space>
         {isEdit ? (
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <Input value={pageInfo.title} onChange={handleChangeTitle} />
         ) : (
-          <span style={{ fontWeight: "600" }}>{title}</span>
+          <span style={{ fontWeight: "600" }}>{pageInfo.title}</span>
         )}
         <Button icon={<EditOutlined />} type="text" onClick={setEditState} />
       </Space>
