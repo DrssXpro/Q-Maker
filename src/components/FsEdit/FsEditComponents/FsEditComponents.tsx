@@ -36,7 +36,7 @@ const generateComponent = (c: IComponentConfig) => {
 
 const FsEditComponents: FC = () => {
   return (
-    <>
+    <div className={styles["list-container"]}>
       {componentGonfigGroup.map((i, index) => {
         const { groupId, groupName, components } = i;
 
@@ -49,7 +49,7 @@ const FsEditComponents: FC = () => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

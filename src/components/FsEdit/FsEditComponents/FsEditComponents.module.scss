@@ -1,3 +1,9 @@
+.list-container {
+  width: 100%;
+  height: calc(100vh - 180px);
+  padding: 0 10px;
+  overflow: auto;
+}
 .component-container {
   margin-bottom: 12px;
   cursor: pointer;
