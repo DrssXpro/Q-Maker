@@ -6,6 +6,7 @@ import { IQuestionParagraphProps } from "./QuestionComponents/QuestionParagraph/
 import { IQuestionTextareaProps } from "./QuestionComponents/QuestionTextarea/type";
 import { IQuestionRadioProps } from "./QuestionComponents/QuestionRadio/type";
 import { IQuestionCheckboxProps } from "./QuestionComponents/QuestionCheckbox/type";
+import { IQuestionRateProps } from "./QuestionComponents/QuestionRate/type";
 
 // 各个组件的 prop type
 export type ComponentPropsType = IQuestionTitleProps &
@@ -14,7 +15,8 @@ export type ComponentPropsType = IQuestionTitleProps &
   IQuestionParagraphProps &
   IQuestionTextareaProps &
   IQuestionRadioProps &
-  IQuestionCheckboxProps;
+  IQuestionCheckboxProps &
+  IQuestionRateProps;
 
 // 统一组件配置
 export interface IComponentConfig {
