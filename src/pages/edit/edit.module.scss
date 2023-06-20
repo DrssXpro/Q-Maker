@@ -15,11 +15,13 @@
     display: flex;
     .content-left,
     .content-right {
+      min-width: 320px;
       width: 20%;
       height: 100%;
       padding: 10px;
       background-color: #fff;
     }
+
     .content-center {
       flex: 1;
       display: flex;

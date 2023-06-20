@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
+import styles from "./FsEditProps.module.scss";
 import useStoreComponent from "../../../hooks/useStoreComponent";
 import { getComponentConfigByType } from "../../FsQuestionComponents";
 import { ComponentPropsType } from "../../FsQuestionComponents/type";
@@ -25,7 +26,11 @@ const FsEditProps: FC = () => {
   };
 
   const { PropsComponent } = componentConfig;
-  return <PropsComponent {...props} onChange={handleChangeProps} disabled={isLocked || isHidden}></PropsComponent>;
+  return (
+    <div className={styles["list-container"]}>
+      <PropsComponent {...props} onChange={handleChangeProps} disabled={isLocked || isHidden}></PropsComponent>
+    </div>
+  );
 };
 
 export default FsEditProps;
