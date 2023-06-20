@@ -5,6 +5,7 @@ import { IComponentConfig } from "./type";
 import { QuestionParagraphConfig } from "./QuestionComponents/QuestionParagraph";
 import { QuestionTextareaConfig } from "./QuestionComponents/QuestionTextarea";
 import { QuestionRadioConfig } from "./QuestionComponents/QuestionRadio";
+import { QuestionCheckboxConfig } from "./QuestionComponents/QuestionCheckbox";
 
 // 所有组件配置列表
 const componentConfigList: IComponentConfig[] = [
@@ -14,6 +15,7 @@ const componentConfigList: IComponentConfig[] = [
   QuestionParagraphConfig,
   QuestionTextareaConfig,
   QuestionRadioConfig,
+  QuestionCheckboxConfig,
 ];
 
 // 所有组件按照类型分组
@@ -31,7 +33,7 @@ export const componentGonfigGroup = [
   {
     groupId: "chooseGroup",
     groupName: "用户选择",
-    components: [QuestionRadioConfig],
+    components: [QuestionRadioConfig, QuestionCheckboxConfig],
   },
 ];
 
