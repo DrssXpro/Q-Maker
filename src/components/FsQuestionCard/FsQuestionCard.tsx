@@ -20,7 +20,7 @@ const FsQuestionCard: FC<propsType> = (props: propsType) => {
   return (
     <div className={styles["fs-question-card-container"]}>
       <div className={styles["fs-question-card-title"]}>
-        <Link to="/login">
+        <Link to={`/edit/${questionDetail.id}`}>
           <Space>
             {questionDetail.isstar ? <StarOutlined /> : ""}
             <span>{questionDetail.title}</span>
