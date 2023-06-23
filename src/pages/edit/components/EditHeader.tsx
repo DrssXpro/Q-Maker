@@ -40,16 +40,12 @@ const QTitle: FC = () => {
   );
 };
 
-const RightOperator: FC = () => {
-  return (
-    <Space>
-      <Button icon={<CheckOutlined />}>保存</Button>
-      <Button type="primary">发布</Button>
-    </Space>
-  );
-};
+interface IHeaderProps {
+  editQuestion: (ispublish: 0 | 1) => void;
+}
 
-const EditHeader: FC = () => {
+const EditHeader: FC<IHeaderProps> = (props: IHeaderProps) => {
+  const { editQuestion } = props;
   const nav = useNavigate();
   return (
     <div className={styles["edit-header-container"]}>
@@ -65,7 +61,14 @@ const EditHeader: FC = () => {
         <FsToolBar />
       </div>
       <div className={styles["header-right"]}>
-        <RightOperator />
+        <Space>
+          <Button icon={<CheckOutlined />} onClick={() => editQuestion(0)}>
+            保存
+          </Button>
+          <Button type="primary" onClick={() => editQuestion(1)}>
+            发布
+          </Button>
+        </Space>
       </div>
     </div>
   );

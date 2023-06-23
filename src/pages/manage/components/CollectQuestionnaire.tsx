@@ -23,12 +23,12 @@ const CollectQuestionnaire: FC = () => {
     getQuestionList();
   }, [searchParams]);
 
-  const goEditPage = () => {
-    nav("/edit/123");
+  const goEditPage = (id: string) => {
+    nav(`/edit/${id}`);
   };
 
-  const goStatPage = () => {
-    nav("/stat/123");
+  const goStatPage = (id: string) => {
+    nav(`/stat/${id}`);
   };
 
   const handleReomveQuestion = async (id: string) => {

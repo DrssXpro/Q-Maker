@@ -7,8 +7,8 @@ import { IQuestionInfo } from "../../types/questionType";
 
 interface propsType {
   questionDetail: IQuestionInfo;
-  goEditPage: () => void;
-  goStatPage: () => void;
+  goEditPage: (id: string) => void;
+  goStatPage: (id: string) => void;
   removeQuestion: (id: string) => void;
   starQuestion: (id: string, iscollect: 0 | 1) => void;
 }
@@ -34,10 +34,10 @@ const FsQuestionCard: FC<propsType> = (props: propsType) => {
       </div>
       <div className={styles["fs-question-card-content"]}>
         <Space>
-          <Button type="text" icon={<EditOutlined />} onClick={goEditPage}>
+          <Button type="text" icon={<EditOutlined />} onClick={() => goEditPage(questionDetail.id)}>
             编辑问卷
           </Button>
-          <Button type="text" icon={<LineChartOutlined />} onClick={goStatPage}>
+          <Button type="text" icon={<LineChartOutlined />} onClick={() => goStatPage(questionDetail.id)}>
             数据统计
           </Button>
         </Space>

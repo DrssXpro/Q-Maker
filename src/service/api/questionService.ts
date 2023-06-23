@@ -1,5 +1,12 @@
 import { myRequest } from "..";
-import { IQueryPayload, IQuestionInfo, IQuestionPayload, IStarPayload } from "../../types/questionType";
+import {
+  IQueryPayload,
+  IQuestionDetail,
+  IQuestionInfo,
+  IQuestionPayload,
+  IStarPayload,
+  IUpdatePayload,
+} from "../../types/questionType";
 import { IList, IResponseData } from "../../types/responseType";
 
 // 创建问卷
@@ -23,6 +30,13 @@ function getStarQuestionListApi(payload: IQueryPayload) {
   return myRequest.get<IResponseData<IList<IQuestionInfo>>>({
     url: "/question/star",
     params: payload,
+  });
+}
+
+// 获取问卷详情
+function getQuestionDetailApi(id: string) {
+  return myRequest.get<IResponseData<IQuestionDetail>>({
+    url: `/question/detail/${id}`,
   });
 }
 
@@ -57,12 +71,22 @@ function recoverQuestionApi(ids: string[]) {
   });
 }
 
+// 更新问卷
+function updateQuestionApi(id: string, payload: IUpdatePayload) {
+  return myRequest.post<IResponseData>({
+    url: `/question/update/${id}`,
+    data: payload,
+  });
+}
+
 export {
   createQuestionApi,
   getQuestionListApi,
   getStarQuestionListApi,
+  getQuestionDetailApi,
   starQuestionApi,
   deleteQuestionAApi,
   deleteQuestionBApi,
   recoverQuestionApi,
+  updateQuestionApi,
 };

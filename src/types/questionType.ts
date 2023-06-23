@@ -1,3 +1,5 @@
+import { ComponentInfoType } from "../stores/modules/componentReducer";
+
 export interface IQuestionPayload {
   authorId: string;
   title: string;
@@ -17,6 +19,15 @@ export interface IStarPayload {
   iscollect: 0 | 1;
 }
 
+export interface IUpdatePayload {
+  title: string;
+  desc: string;
+  js: string;
+  css: string;
+  ispublish: 0 | 1;
+  questionStruct: ComponentInfoType[];
+}
+
 export interface IQuestionInfo {
   id: string;
   title: string;
@@ -30,4 +41,17 @@ export interface IQuestionInfo {
     authorId: string;
     authorName: string;
   };
+}
+
+export interface IQuestionDetail {
+  id: string;
+  title: string;
+  desc: string;
+  js: string;
+  css: string;
+  isdelete: 0 | 1;
+  ispublish: 0 | 1;
+  createdAt: string;
+  updatedAt: string;
+  struct: ComponentInfoType[];
 }
