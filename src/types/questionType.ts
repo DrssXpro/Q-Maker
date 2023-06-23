@@ -1,11 +1,5 @@
 import { ComponentInfoType } from "../stores/modules/componentReducer";
 
-export interface IQuestionPayload {
-  authorId: string;
-  title: string;
-  struct: string;
-}
-
 export interface IQueryPayload {
   page: number;
   pageSize: number;
@@ -54,4 +48,14 @@ export interface IQuestionDetail {
   createdAt: string;
   updatedAt: string;
   struct: ComponentInfoType[];
+}
+
+export interface IQuestionCreateInfo {
+  id: string;
+  authorId: string;
+  title: string;
+  isdelete: 0 | 1;
+  ispublish: 0 | 1;
+  craetedAt: string;
+  updatedAt: string;
 }

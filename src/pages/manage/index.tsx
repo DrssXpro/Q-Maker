@@ -1,8 +1,9 @@
 import { FC } from "react";
 import styles from "./manage.module.scss";
 import { BarsOutlined, StarOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Space } from "antd";
+import { Button, Divider, Space, message } from "antd";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { createQuestionApi } from "../../service/api/questionService";
 
 const Manage: FC = () => {
   const location = useLocation();
@@ -10,11 +11,24 @@ const Manage: FC = () => {
 
   const { pathname } = location;
 
+  const handleCreateQuestion = async () => {
+    try {
+      const res = await createQuestionApi({
+        title: "默认标题",
+      });
+      res.code === 1000 ? message.success(res.message) : message.warning(res.message);
+      res.code === 1000 && navigate(`/edit/${res.data.id}`);
+    } catch (error) {
+      console.log("check:", error);
+      message.error("创建失败");
+    }
+  };
+
   return (
     <>
       <div className={styles["manage-container"]}>
         <div className={styles["manage-left"]}>
-          <Button type="primary" size="large" icon={<PlusOutlined />} onClick={() => navigate("/edit/123")}>
+          <Button type="primary" size="large" icon={<PlusOutlined />} onClick={handleCreateQuestion}>
             新建问卷
           </Button>
           <Divider style={{ borderTop: "transparent" }} />

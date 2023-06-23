@@ -1,17 +1,17 @@
 import { myRequest } from "..";
 import {
   IQueryPayload,
+  IQuestionCreateInfo,
   IQuestionDetail,
   IQuestionInfo,
-  IQuestionPayload,
   IStarPayload,
   IUpdatePayload,
 } from "../../types/questionType";
 import { IList, IResponseData } from "../../types/responseType";
 
 // 创建问卷
-function createQuestionApi(payload: IQuestionPayload) {
-  return myRequest.post<IResponseData>({
+function createQuestionApi(payload: { title: string }) {
+  return myRequest.post<IResponseData<IQuestionCreateInfo>>({
     url: "/question/add",
     data: payload,
   });
