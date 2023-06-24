@@ -11,3 +11,7 @@ export interface IQuestionCheckboxProps {
   disabled?: boolean;
   onChange?: (newProps: IQuestionCheckboxProps) => void;
 }
+
+export interface IQuestionCheckboxStatProps {
+  stat: Array<{ name: string; count: number }>;
+}

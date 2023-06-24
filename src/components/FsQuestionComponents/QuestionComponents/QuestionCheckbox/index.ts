@@ -3,6 +3,7 @@ import { IQuestionCheckboxProps } from "./type";
 import { IComponentConfig } from "../../type";
 import CheckboxComponent from "./components/CheckboxComponent";
 import CheckboxPropsComponent from "./components/CheckboxPropsComponent";
+import CheckboxStatComponent from "./components/CheckboxStatComponent";
 
 // Checkbox 组件默认属性值（初始化、重置使用）
 export const QuestionCheckboxDefaultValue: IQuestionCheckboxProps = {
@@ -21,5 +22,6 @@ export const QuestionCheckboxConfig: IComponentConfig = {
   type: "questionCheckbox",
   Component: CheckboxComponent,
   PropsComponent: CheckboxPropsComponent,
+  StatComponent: CheckboxStatComponent,
   defaultProps: QuestionCheckboxDefaultValue,
 };
