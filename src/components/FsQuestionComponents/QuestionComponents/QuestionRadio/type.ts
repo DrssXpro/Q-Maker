@@ -11,3 +11,7 @@ export interface IQuestionRadioProps {
   disabled?: boolean;
   onChange?: (newProps: IQuestionRadioProps) => void;
 }
+
+export interface IQuestionRadioStatProps {
+  stat: Array<{ name: string; count: number }>;
+}

@@ -4,7 +4,7 @@ import { IQuestionInputProps } from "./QuestionComponents/QuestionInput/type";
 import { IQuestionInfoProps } from "./QuestionComponents/QuestionInfo/type";
 import { IQuestionParagraphProps } from "./QuestionComponents/QuestionParagraph/type";
 import { IQuestionTextareaProps } from "./QuestionComponents/QuestionTextarea/type";
-import { IQuestionRadioProps } from "./QuestionComponents/QuestionRadio/type";
+import { IQuestionRadioProps, IQuestionRadioStatProps } from "./QuestionComponents/QuestionRadio/type";
 import { IQuestionCheckboxProps } from "./QuestionComponents/QuestionCheckbox/type";
 import { IQuestionRateProps } from "./QuestionComponents/QuestionRate/type";
 
@@ -18,11 +18,15 @@ export type ComponentPropsType = IQuestionTitleProps &
   IQuestionCheckboxProps &
   IQuestionRateProps;
 
+// 具有统计组件的 type
+export type ComponentStatPropsType = IQuestionRadioStatProps;
+
 // 统一组件配置
 export interface IComponentConfig {
   title: string;
   type: string;
+  defaultProps: ComponentPropsType;
   Component: FC<ComponentPropsType>;
   PropsComponent: FC<ComponentPropsType>;
-  defaultProps: ComponentPropsType;
+  StatComponent?: FC<ComponentStatPropsType>;
 }

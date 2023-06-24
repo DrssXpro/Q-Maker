@@ -3,6 +3,7 @@ import { IComponentConfig } from "../../type";
 import RadioComponent from "./components/RadioComponent";
 import RadioPropsComponent from "./components/RadioPropsComponent";
 import { IQuestionRadioProps } from "./type";
+import RadioStatComponent from "./components/RadioStatComponent";
 
 // Radio 组件默认属性值（初始化、重置使用）
 export const QuestionRadioDefaultValue: IQuestionRadioProps = {
@@ -22,5 +23,6 @@ export const QuestionRadioConfig: IComponentConfig = {
   type: "questionRadio",
   Component: RadioComponent,
   PropsComponent: RadioPropsComponent,
+  StatComponent: RadioStatComponent,
   defaultProps: QuestionRadioDefaultValue,
 };
