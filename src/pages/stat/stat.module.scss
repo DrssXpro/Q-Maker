@@ -18,8 +18,15 @@
     .content-right {
       width: 20%;
       height: 100%;
-      padding: 10px 20px;
+      padding: 10px;
       background-color: #fff;
+      overflow: auto;
+    }
+    .content-left {
+      min-width: 320px;
+    }
+    .content-right {
+      min-width: 250px;
     }
     .content-center {
       flex: 1;

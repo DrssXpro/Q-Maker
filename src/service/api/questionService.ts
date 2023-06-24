@@ -4,6 +4,7 @@ import {
   IQuestionCreateInfo,
   IQuestionDetail,
   IQuestionInfo,
+  IQuestionStat,
   IStarPayload,
   IUpdatePayload,
 } from "../../types/questionType";
@@ -79,6 +80,14 @@ function updateQuestionApi(id: string, payload: IUpdatePayload) {
   });
 }
 
+// 获取问卷统计
+function getQuestionStatApi(id: string, payload: { page: number; pageSize: number }) {
+  return myRequest.get<IResponseData<IList<IQuestionStat>>>({
+    url: `/question/stat/${id}`,
+    data: payload,
+  });
+}
+
 export {
   createQuestionApi,
   getQuestionListApi,
@@ -89,4 +98,5 @@ export {
   deleteQuestionBApi,
   recoverQuestionApi,
   updateQuestionApi,
+  getQuestionStatApi,
 };
