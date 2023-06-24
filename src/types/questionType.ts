@@ -60,19 +60,42 @@ export interface IQuestionCreateInfo {
   updatedAt: string;
 }
 
+export interface IQuestionStat {
+  [key: string]: {
+    type: string;
+    value: string | number | string[];
+  };
+}
+
 // 定义问卷返回类型，key 存放每个组件的id, value 为用户填写内容
 /**
- * template: 
- *  {
+ * 
+ * template:
+    {
       id: "1",
-      GQBncIhknFixcdGH5Jl6c: "",
-      ckg00fAjlhICQkfDK2uxz: "",
-      x2dnDfwRK6XTDbcF8uhvx: "",
-      Km03uY0uqUEIb3CqajrQX: 4,
-      KmeCPDssBONoC5c6TCSfv: "JAqrk", (radio)
-      "9X4vODEtk7VvGiSq27v45": "test1", (textarea)
+      GQBncIhknFixcdGH5Jl6c: {
+        type: "questionInfo",
+        value: "",
+      },
+      ckg00fAjlhICQkfDK2uxz: {
+        type: "questionParagraph",
+        value: "",
+      },
+      x2dnDfwRK6XTDbcF8uhvx: {
+        type: "questionParagraph",
+        value: "",
+      },
+      Km03uY0uqUEIb3CqajrQX: {
+        type: "questionRate",
+        value: 4,
+      },
+      KmeCPDssBONoC5c6TCSfv: {
+        type: "questionRadio",
+        value: "选项1",
+      },
+      "9X4vODEtk7VvGiSq27v45": {
+        type: "questionTextarea",
+        value: "test1",
+      },
     },
  */
-export interface IQuestionStat {
-  [key: string]: string | number | string[];
-}

@@ -17,7 +17,7 @@ interface IStatTableProps {
 
 const StatTable: FC<IStatTableProps> = (props: IStatTableProps) => {
   const { statData, componentList = [], selectId, page, pageSize, total, selectComponent, pageChange } = props;
-
+  console.log(componentList);
   const columns = componentList.map((c) => {
     const { id, title, props = {} } = c;
     const cTitle = props!.title || title;
@@ -30,6 +30,7 @@ const StatTable: FC<IStatTableProps> = (props: IStatTableProps) => {
       ),
       dataIndex: id,
       key: id,
+      render: (value: any) => <div>{value?.value}</div>,
     };
   });
   return (
