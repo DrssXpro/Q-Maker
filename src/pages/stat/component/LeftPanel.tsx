@@ -7,6 +7,7 @@ interface IPanelProps {
   componentList?: ComponentInfoType[];
   currentSelect: string;
   selectComponent: (id: string) => void;
+  selectComponentType: (type: string) => void;
 }
 
 const generatorComponent = (componentInfo: ComponentInfoType) => {
@@ -18,18 +19,25 @@ const generatorComponent = (componentInfo: ComponentInfoType) => {
 };
 
 const LeftPanel: FC<IPanelProps> = (props: IPanelProps) => {
-  const { componentList, currentSelect, selectComponent } = props;
+  const { componentList, currentSelect, selectComponent, selectComponentType } = props;
   return (
     <div className={styles["component-list"]}>
       {componentList?.map((c) => {
-        const { id } = c;
+        const { id, type } = c;
         const componentClassName = classNames({
           [styles["component-wrapper"]]: true,
           [styles["selected"]]: id === currentSelect,
         });
 
         return (
-          <div className={componentClassName} key={id} onClick={() => selectComponent(id)}>
+          <div
+            className={componentClassName}
+            key={id}
+            onClick={() => {
+              selectComponent(id);
+              selectComponentType(type);
+            }}
+          >
             <div style={{ pointerEvents: "none" }}>{generatorComponent(c)}</div>
           </div>
         );

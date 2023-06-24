@@ -40,6 +40,6 @@ export const componentGonfigGroup = [
 ];
 
 // tool: 找到对应的组件 config
-export function getComponentConfigByType(type: string) {
+export function getComponentConfigByType(type: string): IComponentConfig | undefined {
   return componentConfigList.find((c) => c.type === type);
 }

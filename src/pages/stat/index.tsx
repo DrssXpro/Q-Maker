@@ -20,6 +20,7 @@ const Stat: FC = () => {
   const [total, setTotal] = useState<number>(0);
   // 当前选择select
   const [current, setCurrent] = useState<string>("");
+  const [currentType, setCurrentType] = useState<string>("");
 
   useEffect(() => {
     getQuestionDetail();
@@ -56,6 +57,7 @@ const Stat: FC = () => {
               componentList={questionDetail?.struct}
               currentSelect={current}
               selectComponent={(id) => setCurrent(id)}
+              selectComponentType={(type) => setCurrentType(type)}
             />
           </div>
           <div className={styles["content-center"]}>
@@ -64,12 +66,13 @@ const Stat: FC = () => {
               selectId={current}
               componentList={questionDetail?.struct}
               selectComponent={(id) => setCurrent(id)}
+              selectComponentType={(type) => setCurrentType(type)}
               pageChange={handlePageChange}
               {...{ page, pageSize, total }}
             />
           </div>
           <div className={styles["content-right"]}>
-            <RightPanel />
+            <RightPanel currentSelect={current} currentType={currentType} />
           </div>
         </div>
       </div>

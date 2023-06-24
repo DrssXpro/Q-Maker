@@ -12,19 +12,35 @@ interface IStatTableProps {
   pageSize: number;
   total: number;
   selectComponent: (id: string) => void;
+  selectComponentType: (type: string) => void;
   pageChange: (page: number) => void;
 }
 
 const StatTable: FC<IStatTableProps> = (props: IStatTableProps) => {
-  const { statData, componentList = [], selectId, page, pageSize, total, selectComponent, pageChange } = props;
+  const {
+    statData,
+    componentList = [],
+    selectId,
+    page,
+    pageSize,
+    total,
+    selectComponent,
+    selectComponentType,
+    pageChange,
+  } = props;
   console.log(componentList);
   const columns = componentList.map((c) => {
-    const { id, title, props = {} } = c;
+    const { id, title, type, props = {} } = c;
     const cTitle = props!.title || title;
 
     return {
       title: (
-        <div onClick={() => selectComponent(id)}>
+        <div
+          onClick={() => {
+            selectComponent(id);
+            selectComponentType(type);
+          }}
+        >
           <span style={{ color: id === selectId ? "#1890ff" : "inherit", cursor: "pointer" }}>{cTitle}</span>
         </div>
       ),

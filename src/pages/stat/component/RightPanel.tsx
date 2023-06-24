@@ -1,11 +1,27 @@
 import { FC } from "react";
-import RadioStatComponent from "../../../components/FsQuestionComponents/QuestionComponents/QuestionRadio/components/RadioStatComponent";
+import { getComponentConfigByType } from "../../../components/FsQuestionComponents";
 
-const RightPanel: FC = () => {
+interface IPanelProps {
+  currentSelect: string;
+  currentType: string;
+}
+
+const RightPanel: FC<IPanelProps> = (props: IPanelProps) => {
+  const { currentSelect, currentType } = props;
+  const { StatComponent } = getComponentConfigByType(currentType) || {};
+
   return (
     <>
       <h2 style={{ margin: 0 }}>图标统计</h2>
-      <RadioStatComponent stat={[]} />
+      {currentSelect ? (
+        StatComponent ? (
+          <StatComponent stat={[]} />
+        ) : (
+          <div style={{ marginTop: "20px" }}>该组件无统计图表</div>
+        )
+      ) : (
+        <div style={{ marginTop: "20px" }}>未选中组件</div>
+      )}
     </>
   );
 };
