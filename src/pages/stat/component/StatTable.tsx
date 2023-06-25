@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Table } from "antd";
+import { Table, Tag } from "antd";
 import styles from "./style/StatTable.module.scss";
 import { IQuestionStat } from "../../../types/questionType";
 import { ComponentInfoType } from "../../../stores/modules/componentReducer";
@@ -46,7 +46,13 @@ const StatTable: FC<IStatTableProps> = (props: IStatTableProps) => {
       ),
       dataIndex: id,
       key: id,
-      render: (value: any) => <div>{value?.value}</div>,
+      render: (value: any) => {
+        if (value.type === "questionCheckbox") {
+          return value.value.map((i: any) => <Tag color="orange">{i}</Tag>);
+        } else if (value.type === "questionRadio") {
+          return <Tag color="blue">{value.value}</Tag>;
+        } else return <div>{value?.value}</div>;
+      },
     };
   });
   return (
