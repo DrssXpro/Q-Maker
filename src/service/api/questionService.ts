@@ -6,6 +6,7 @@ import {
   IQuestionInfo,
   IQuestionStat,
   IStarPayload,
+  IStatChartStruct,
   IUpdatePayload,
 } from "../../types/questionType";
 import { IList, IResponseData } from "../../types/responseType";
@@ -88,6 +89,22 @@ function getQuestionStatApi(id: string, payload: { page: number; pageSize: numbe
   });
 }
 
+// 获取问卷单选框统计
+function getQuestionStatRadioApi(payload: { id: string; radio: string }) {
+  return myRequest.get<IResponseData<IStatChartStruct[]>>({
+    url: `/stat/radio`,
+    params: payload,
+  });
+}
+
+// 获取问卷复选框统计
+function getQuestionStatCheckboxApi(payload: { id: string; check: string }) {
+  return myRequest.get<IResponseData<IStatChartStruct[]>>({
+    url: `/stat/checkbox`,
+    params: payload,
+  });
+}
+
 export {
   createQuestionApi,
   getQuestionListApi,
@@ -99,4 +116,6 @@ export {
   recoverQuestionApi,
   updateQuestionApi,
   getQuestionStatApi,
+  getQuestionStatRadioApi,
+  getQuestionStatCheckboxApi,
 };

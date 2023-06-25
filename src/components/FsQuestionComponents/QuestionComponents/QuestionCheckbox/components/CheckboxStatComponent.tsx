@@ -19,24 +19,9 @@ function format(n: number) {
 const STAT_COLORS = ["#FF2D2D", "#BE77FF", "#2894FF", "#00EC00", "#EAC100", "#FF9D6F"];
 const CheckboxStatComponent: FC<IQuestionCheckboxStatProps> = (props: IQuestionCheckboxStatProps) => {
   const { stat } = props;
-  const test = [
-    {
-      name: "选项一",
-      count: 20,
-    },
-    {
-      name: "选项二",
-      count: 54,
-    },
-    {
-      name: "选项三",
-      count: 44,
-    },
-  ];
-
   const sum = useMemo(() => {
     let s = 0;
-    test.forEach((i: { name: string; count: number }) => (s += i.count));
+    stat.forEach((i: { name: string; count: number }) => (s += i.count));
     return s;
   }, [stat]);
   return (
@@ -46,14 +31,14 @@ const CheckboxStatComponent: FC<IQuestionCheckboxStatProps> = (props: IQuestionC
           <PieChart>
             <Pie
               dataKey={"count"}
-              data={test}
+              data={stat}
               cx="50%" // x 轴的偏移
               cy="50%" // y 轴的偏移
               outerRadius={50} // 饼图的直径
               fill="#8884d8"
               label={(i) => `${i.name}: ${format(i.count / sum)}%`}
             >
-              {test.map((_i, index) => {
+              {stat.map((_i, index) => {
                 return <Cell key={index} fill={STAT_COLORS[index]} />;
               })}
             </Pie>
@@ -66,7 +51,7 @@ const CheckboxStatComponent: FC<IQuestionCheckboxStatProps> = (props: IQuestionC
           <BarChart
             width={400}
             height={300}
-            data={test}
+            data={stat}
             margin={{
               top: 10,
               right: 10,

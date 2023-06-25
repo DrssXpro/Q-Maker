@@ -60,6 +60,11 @@ export interface IQuestionCreateInfo {
   updatedAt: string;
 }
 
+export interface IStatChartStruct {
+  name: string;
+  count: number;
+}
+
 export interface IQuestionStat {
   [key: string]: {
     type: string;
